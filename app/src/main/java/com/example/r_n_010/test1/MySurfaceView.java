@@ -34,12 +34,9 @@ public class MySurfaceView implements SurfaceHolder.Callback, Runnable, View.OnC
 
   private int count = 0;
 
-  private float dx = 5, dy = 5;
+
   private float screenWidth, screenHeight;
-  private static final float rectWidth = 40;
-  private static final float rectHeight = 40;
-  private int ballx=100;
-  private int bally=100;
+  
 
   public MySurfaceView(Context context ,SurfaceView sv ,ArrayList<Button> arrayButton ){
     //super(context);
@@ -76,12 +73,6 @@ public class MySurfaceView implements SurfaceHolder.Callback, Runnable, View.OnC
   @Override
   public void run() {
     while (thread != null) {
-      if (ballx-rectWidth < 0 || ballx + rectWidth > screenWidth)
-        dx = -dx;
-      if (bally-rectHeight < 0 || bally + rectHeight > screenHeight)
-        dy = -dy;
-      ballx += dx;
-      bally += dy;
 
       doDraw(holder);
     }
@@ -93,7 +84,6 @@ public class MySurfaceView implements SurfaceHolder.Callback, Runnable, View.OnC
       Paint paint = new Paint();
       paint.setColor(Color.GREEN);
       canvas.drawColor(Color.WHITE);
-      //canvas.drawCircle(ballx, bally, 20, paint);
 
       if(r == 360) r = 0;
 
@@ -127,11 +117,6 @@ public class MySurfaceView implements SurfaceHolder.Callback, Runnable, View.OnC
     }
   }
 
-  public boolean onTouchEvent(MotionEvent event){
-
-    rotation = true;
-    return true;
-  }
 
   @Override
   public void onClick(View v) {
